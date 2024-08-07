@@ -1,0 +1,28 @@
+.li-task {
+    margin: 15px 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    span{
+        background-color: rgb(223, 220, 220);
+        input{
+            height: 22px;
+            font-size: 25px;
+        }
+    }
+
+    i{
+        height: 48px;
+        font-size: 20px;
+    }
+}
+
+.completed {
+    color: rgb(124, 14, 242);
+    text-decoration: line-through 5px;
+}

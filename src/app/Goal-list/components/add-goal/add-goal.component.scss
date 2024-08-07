@@ -1,0 +1,26 @@
+form{
+    background-color: rgb(59, 58, 58);
+    color: aliceblue;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    input{
+        border: 5px solid  rgb(59, 58, 58);
+        height: 50px;
+        overflow: hidden;
+        outline: none;
+    }
+    button{
+        height: 40px;
+    }
+    
+}
+
+.priority{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 5px ;
+}
