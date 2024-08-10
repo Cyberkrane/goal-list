@@ -11,6 +11,8 @@ export class AddGoalComponent {
 
   @Output()
   public onNewGoal: EventEmitter<Goal> = new EventEmitter<Goal>();
+  @Output()
+  public cheActualiza: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public goal: Goal = {
     id: "",
@@ -19,7 +21,9 @@ export class AddGoalComponent {
     priority: "low"
   };
 
-  constructor(private toastr: ToastrService) { }
+  stateList = true;
+
+  constructor(private toastr: ToastrService) {}
 
   addGoal(): void {
     if (this.goal.description.trim().length === 0) {
@@ -28,12 +32,19 @@ export class AddGoalComponent {
     }
     this.onNewGoal.emit(this.goal);
     this.showSuccess();
-    
-    // limpiar input
-    this.goal.description = "";
-    this.goal.priority = "low";
-    this.goal.completed = false;
+    this.resetGoal();
+    this.cheActualiza.emit(this.stateList);
+  } 
+
+  resetGoal() {
+    this.goal = {
+      id: "",
+      description: "",
+      completed: false,
+      priority: "low"
+    };
   }
+
 
   alertError() {
     this.toastr.error("No puede agregar una tarea vacia");

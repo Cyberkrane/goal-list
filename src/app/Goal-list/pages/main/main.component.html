@@ -1,24 +1,24 @@
 <div class="container shadow p-3 rounded mt-3 bg-light ">
 
-    <h1 class="text-center">Angular Goal List</h1>
+    <h1 class="text-center">{{title}}</h1>
     
     <!-- ADD GOAL -->
-    <app-add-goal (onNewGoal)="onNewGoal($event)" ></app-add-goal>
+    <app-add-goal (onNewGoal)="onNewGoal($event)" (cheActualiza)="cheActualiza($event)"></app-add-goal>
     
     <!-- GOAL LIST -->    
-    <app-list [goalList]="goalList" (onDeleteID)="onDeleteGoal($event)"></app-list>
+    <app-list [goalList]="goalList" (onDeleteID)="onDeleteById($event)" ></app-list>
 
     <!-- FILTERS -->
-    <!-- <div class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
          <div class="d-flex gap-2">
-        <button class="btn btn-secondary shadow">All Tasks</button>
+        <button class="btn btn-secondary shadow">All Goals</button>
         <button class="btn btn-secondary shadow">Completed</button> 
         <button class="btn btn-secondary shadow">Pending</button>
     </div> 
     <div class="d-flex gap-2">
         <button class="btn btn-danger shadow">Clear Completed</button>
     </div>
-    </div> -->
+    </div>
    
 
 </div>

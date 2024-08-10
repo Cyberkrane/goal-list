@@ -9,36 +9,43 @@ import { GoalListService } from '../../services/goal-list.service';
 })
 export class MainComponent implements OnInit {
 
+  public goalList: Goal[] = [];
+
+  public title: string = "Infocus";
+
   constructor(private goalListService: GoalListService) { }
 
   ngOnInit(): void {
-    this.loadGoalsFromLocalStorage();
+    this.showAllGoals();
+    console.log(this.goalList);
   }
 
-  get goalList() {
-    return [...this.goalListService.goalList];
+  public showAllGoals() {
+    this.goalListService.getGoals().subscribe(
+      (data) => {
+        this.goalList = data;
+        console.log(data);
+      }
+    );
   }
-
-  onNewGoal(goal: Goal): void {
+  public onNewGoal(goal: Goal): void {
     this.goalListService.addNewGoal(goal);
-    this.saveGoalsToLocalStorage();
   }
 
-  onDeleteGoal(id: string): void {
+  public onGoalChecked(goal: Goal): void {
+    this.goalListService.updateGoal(goal);
+  }
+
+  public onDeleteById(id: string): void {
     this.goalListService.deleteGoal(id);
-    this.saveGoalsToLocalStorage();
+    this.showAllGoals();
   }
 
-  saveGoalsToLocalStorage(): void {
-    localStorage.setItem('goalList', JSON.stringify(this.goalList));
-  }
-
-  loadGoalsFromLocalStorage(): void {
-    const storedGoals = localStorage.getItem('goalList');
-    if (storedGoals) {
-      this.goalListService.goalList = JSON.parse(storedGoals);
+  public cheActualiza($event: boolean) {
+    this.showAllGoals();
+    if ($event) {
+      this.showAllGoals();
     }
   }
-
 
 }

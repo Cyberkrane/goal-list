@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Goal } from '../../interfaces/goal';
 import { ToastrService } from 'ngx-toastr';
+import { GoalListService } from '../../services/goal-list.service';
 
 @Component({
   selector: 'app-list',
@@ -9,28 +10,37 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListComponent {
 
+  editGoal({ id, description, completed, priority }: Goal) {
+    const editedGoal: Partial<Goal> = { id, description, completed, priority };
+    this.onNewGoal.emit();
+    return editedGoal;
+  }
+
   @Output()
   public onDeleteID: EventEmitter<string> = new EventEmitter<string>();
+
   @Output()
   public onNewGoal: EventEmitter<Goal> = new EventEmitter<Goal>();
 
   @Input()
-  public goalList: Goal[] = [
-    {
-      id: "0",
-      description: "No hay tareas pendientes",
-      completed: false,
-      priority: "low"
-    }
-  ];
+  public goalList: Goal[] = [];
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private goalListService: GoalListService) { }
 
   onDeleteById(id: string): void {
     if (!id) return;
     this.onDeleteID.emit(id);
-    this.eliminatedTask();
+    this.eliminatedGoal();
+    this.loadGoals();
   }
+
+  loadGoals(): void {
+    this.goalListService.getGoals().subscribe((data) => {
+      this.goalList = data;
+      return this.goalList;
+    })
+  }
+
 
   onGoalChecked(goal: Goal): void {
     this.showSuccess();
@@ -40,8 +50,8 @@ export class ListComponent {
     this.toastr.success("Genial!!! has completado la tarea.");
   }
 
-  eliminatedTask(): void {
-   this.toastr.info("la tarea fue eliminada");
+  eliminatedGoal(): void {
+    this.toastr.info("la tarea fue eliminada");
   }
 
 }

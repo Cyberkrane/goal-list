@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 // regular style toast
-body{
-    background-color: antiquewhite;
+body {
+    background-color: rgb(202, 203, 204) !important;
 }
-.low{
-    border: rgba(14, 212, 14, 0.592) solid 3px;
+.low {
+    border-left: rgba(14, 177, 14, 0.592) solid 7px;
 }
 
-.medium{
-    border: rgba(235, 235, 8, 0.816) solid 3px;
+.medium {
+    border-left: rgba(241, 184, 60, 0.816) solid 7px;
 }
-.high{
-    border: rgba(222, 12, 12, 0.751) solid 3px;
+.high {
+    border-left: rgba(192, 18, 18, 0.751) solid 7px;
 }

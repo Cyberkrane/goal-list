@@ -1,7 +1,7 @@
 <ul class="list-group gap-2">
 
     <li class="li-task {{goal.priority}}" 
-        *ngFor="let goal of goalList , let i = index">
+        *ngFor="let goal of goalList , let i = index" (click)="editGoal(goal)">
 
       
         <span class="input-group-text">
