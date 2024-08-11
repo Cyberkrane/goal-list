@@ -17,14 +17,13 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.showAllGoals();
-    console.log(this.goalList);
   }
 
   public showAllGoals() {
     this.goalListService.getGoals().subscribe(
       (data) => {
-        this.goalList = data;
-        console.log(data);
+        this.goalList = Object.values(data);
+        console.log('GoalList: ',this.goalList);
       }
     );
   }

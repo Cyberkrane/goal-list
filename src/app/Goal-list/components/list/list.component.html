@@ -1,7 +1,7 @@
 <ul class="list-group gap-2">
 
     <li class="li-task {{goal.priority}}" 
-        *ngFor="let goal of goalList , let i = index" (click)="editGoal(goal)">
+        *ngFor="let goal of goalList , let i = index">
 
       
         <span class="input-group-text">
@@ -18,7 +18,7 @@
         <div class="col text-truncate p-2" 
            [ngClass]="{ 'completed': goal.completed, '': !goal.completed }"
         >
-            {{goal.description}}
+            {{ goal.description }}
         </div>
 
         <i class="bi bi-trash align-self-center btn btn-danger" (click)="onDeleteById(goal.id)"></i>

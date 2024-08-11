@@ -10,12 +10,6 @@ import { GoalListService } from '../../services/goal-list.service';
 })
 export class ListComponent {
 
-  editGoal({ id, description, completed, priority }: Goal) {
-    const editedGoal: Partial<Goal> = { id, description, completed, priority };
-    this.onNewGoal.emit();
-    return editedGoal;
-  }
-
   @Output()
   public onDeleteID: EventEmitter<string> = new EventEmitter<string>();
 
