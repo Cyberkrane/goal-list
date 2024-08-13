@@ -11,12 +11,12 @@
     <!-- FILTERS -->
     <div class="d-flex justify-content-between mt-3">
          <div class="d-flex gap-2">
-        <button class="btn btn-secondary shadow">All Goals</button>
-        <button class="btn btn-secondary shadow">Completed</button> 
-        <button class="btn btn-secondary shadow">Pending</button>
+        <button class="btn btn-secondary shadow" (click)="filterGoalsAll()">All Goals</button>
+        <button class="btn btn-secondary shadow" (click)="filterGoalsCompleted()">Completed</button> 
+        <button class="btn btn-secondary shadow" (click)="filterGoalsPending()">Pending</button>
     </div> 
     <div class="d-flex gap-2">
-        <button class="btn btn-danger shadow">Clear Completed</button>
+        <button class="btn btn-dark shadow" title="pagina laboratorio">▓</button>
     </div>
     </div>
    

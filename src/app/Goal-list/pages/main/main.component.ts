@@ -9,11 +9,20 @@ import { GoalListService } from '../../services/goal-list.service';
 })
 export class MainComponent implements OnInit {
 
-  public goalList: Goal[] = [];
+
+  private _goalList: Goal[] = [];
 
   public title: string = "Infocus";
 
   constructor(private goalListService: GoalListService) { }
+
+  public get goalList(): Goal[] {
+    return this._goalList;
+  }
+  public set goalList(value: Goal[]) {
+    this._goalList = value;
+  }
+
 
   ngOnInit(): void {
     this.showAllGoals();
@@ -23,7 +32,7 @@ export class MainComponent implements OnInit {
     this.goalListService.getGoals().subscribe(
       (data) => {
         this.goalList = Object.values(data);
-        console.log('GoalList: ',this.goalList);
+        console.log('GoalList: ', this.goalList);
       }
     );
   }
@@ -45,6 +54,26 @@ export class MainComponent implements OnInit {
     if ($event) {
       this.showAllGoals();
     }
+  }
+
+  filterGoalsPending() {
+    this.goalListService.getGoals().subscribe(
+      (data) => {
+        this.goalList = this.goalList.filter((goal) => !goal.completed);
+      }
+    )
+  }
+  filterGoalsCompleted() {
+    this.goalListService.getGoals().subscribe(
+      (data) => {
+        this.goalList = this.goalList.filter((goal) => goal.completed);
+        return this.goalList;
+      }
+    )
+  }
+  
+  filterGoalsAll() {
+    this.showAllGoals();
   }
 
 }

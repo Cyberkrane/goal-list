@@ -37,6 +37,7 @@ export class ListComponent {
 
 
   onGoalChecked(goal: Goal): void {
+    this.goalListService.updateGoal(goal);
     this.showSuccess();
   }
 
